@@ -2,12 +2,12 @@
 #define __SIGNALS_H__
 #include <signal.h>
 
-typedef void (*sighandler_t)(int);
+typedef void (*swSignalHandler)(int);
 //typedef uint32_t x86_sigset_t;
 
 typedef struct x86_sigaction_s {
 	union {
-	  __sighandler_t _sa_handler;
+	  swSignalHandler _sa_handler;
 	  void (*_sa_sigaction)(int, siginfo_t *, void *);
 	} _u;
 	sigset_t sa_mask;
@@ -17,7 +17,7 @@ typedef struct x86_sigaction_s {
 
 typedef struct x86_sigaction_restorer_s {
 	union {
-	  __sighandler_t _sa_handler;
+	  swSignalHandler _sa_handler;
 	  void (*_sa_sigaction)(int, siginfo_t *, void *);
 	} _u;
 	uint32_t sa_flags;
